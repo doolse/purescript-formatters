@@ -187,14 +187,18 @@ formatF cb dt@(DT.DateTime d t) = case _ of
   Meridiem a →
     (if (fromEnum $ T.hour t) >= 12 then "PM" else "AM") <> cb a
   Minutes a →
-    show (fromEnum $ T.minute t) <> cb a
+    show2 (fromEnum $ T.minute t) <> cb a
   Seconds a →
-    show (fromEnum $ T.second t) <> cb a
+    show2 (fromEnum $ T.second t) <> cb a
   Milliseconds a →
     show (fromEnum $ T.millisecond t) <> cb a
   Placeholder s a →
     s <> cb a
   End → ""
+  where
+    show2 i | i < 10 = "0" <> show i
+    show2 i = show i
+
 
 
 format ∷ Formatter → DT.DateTime → String
