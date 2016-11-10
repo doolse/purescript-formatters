@@ -172,15 +172,15 @@ formatF cb dt@(DT.DateTime d t) = case _ of
   MonthShort a →
     printShortMonth (D.month d) <> cb a
   MonthTwoDigits a →
-    show (fromEnum $ D.month d) <> cb a
+    show2 (fromEnum $ D.month d) <> cb a
   DayOfMonth a →
-    show (fromEnum $ D.day d) <> cb a
+    show2 (fromEnum $ D.day d) <> cb a
   UnixTimestamp a →
     (show $ Int.floor $ (_ / 1000.0) $ unwrap $ unInstant $ fromDateTime dt) <> cb a
   DayOfWeek a →
     show (fromEnum $ D.weekday d) <> cb a
   Hours24 a →
-    show (fromEnum $ T.hour t) <> cb a
+    show2 (fromEnum $ T.hour t) <> cb a
   Hours12 a →
     let fix12 h = if h == 0 then 12 else h
     in show (fix12 $ (fromEnum $ T.hour t) `mod` 12) <> cb a
