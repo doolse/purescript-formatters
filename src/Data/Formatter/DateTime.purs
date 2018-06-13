@@ -38,7 +38,7 @@ import Data.List as List
 import Data.Maybe (Maybe(..), maybe, fromMaybe)
 import Data.Newtype (unwrap)
 import Data.Ord (abs)
-import Data.String as Str
+import Data.String.CodeUnits as Str
 import Data.Time as T
 import Data.Time.Duration as Dur
 import Data.Tuple (Tuple(..))
@@ -393,7 +393,7 @@ unformatCommandParser = case _ of
   modifyWithParser ∷ ∀ s' s x. (s → Maybe x → s) → P.ParserT s' (State s) x → P.ParserT s' (State s) Unit
   modifyWithParser f p = do
     v ← p
-    lift $ modify (flip f (Just v))
+    void $ lift $ modify (flip f (Just v))
 
 unformatParser ∷ ∀ m. Monad m ⇒ Formatter → P.ParserT String m DT.DateTime
 unformatParser f = do

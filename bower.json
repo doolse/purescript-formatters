@@ -17,7 +17,7 @@
   ],
   "dependencies": {
     "purescript-prelude": "^4.0.0",
-    "purescript-parsing": "^4.3.1",
+    "purescript-parsing": "joncfoo/purescript-parsing#update-for-0.12.0",
     "purescript-fixed-points": "^5.0.0",
     "purescript-datetime": "^4.0.0",
     "purescript-transformers": "^4.1.0",
